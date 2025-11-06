@@ -10,12 +10,15 @@ export async function GET() {
 	const existing = await db.select().from(users).where(eq(users.clerkId, user.id)).limit(1);
 
 	if (existing.length === 0) {
-		await db.insert(users).values({
-			clerkId: user.id,
-			fullName: user.fullName ?? "",
-			email: user.emailAddresses[0].emailAddress,
-			role: "resident",
-		});
+		await db
+			.insert(users)
+			.values({
+				clerkId: user.id,
+				fullName: user.fullName ?? "",
+				email: user.emailAddresses[0].emailAddress,
+				role: "resident",
+			})
+			.onConflictDoNothing({ target: users.clerkId });
 	}
 
 	return Response.json({ ok: true });

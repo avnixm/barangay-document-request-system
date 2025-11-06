@@ -21,7 +21,7 @@ export default function Home() {
               <Button asChild>
                 <Link href="/sign-up">Sign Up</Link>
               </Button>
-            </div>
+        </div>
           </SignedOut>
 
           <SignedIn>
@@ -57,6 +57,6 @@ export default function Home() {
       <footer className="p-4 text-center text-gray-500 text-sm">
         © Barangay DocSys 2025. All Rights Reserved.
       </footer>
-    </main>
+      </main>
   );
 }
